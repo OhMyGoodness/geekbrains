@@ -78,16 +78,16 @@ func generateFiboNumber(incomingArray inArray: inout [Double]) -> () {
     }
      */
     switch inArray.count {
-    case _ where inArray.count < 2:
-        inArray = [Double]()
-        inArray.append(0)
-        inArray.append(1)
-    default:
-        let prevNumber = inArray[inArray.count - 1]
-        let prev2Number = inArray[inArray.count - 2]
-        let nextNumber = prevNumber + prev2Number
+        case _ where inArray.count < 2:
+            inArray = [Double]()
+            inArray.append(0)
+            inArray.append(1)
+        default:
+            let prevNumber = inArray[inArray.count - 1]
+            let prev2Number = inArray[inArray.count - 2]
+            let nextNumber = prevNumber + prev2Number
 
-        inArray.append(nextNumber)
+            inArray.append(nextNumber)
     }
     generateFiboNumber(incomingArray: &inArray)
 }
