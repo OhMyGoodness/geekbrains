@@ -109,6 +109,8 @@ for i in 2...n {
 }
 
 func calculateItems(startIndex index: Int = 2, _ inDist: inout [Int]) -> () {
+    var nextIndex: Int? = nil
+
     for (key, value) in inDist.enumerated().reversed() {
         if (key < index) {
             continue
@@ -119,13 +121,13 @@ func calculateItems(startIndex index: Int = 2, _ inDist: inout [Int]) -> () {
         }
     }
 
-    let nextIndex: Int = index + 1
-    if (nextIndex < inDist.max()!) {
-        calculateItems(startIndex: nextIndex, &inDist)
+    nextIndex = inDist.first(where: { $0 > index })
+
+    if (nextIndex! < inDist.max()!) {
+        calculateItems(startIndex: nextIndex!, &inDist)
     }
 }
 
 calculateItems(&intDict)
-
-print("====== Задание 6======")
+print("====== Задание 5 ======")
 print(intDict)
