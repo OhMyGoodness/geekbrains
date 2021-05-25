@@ -14,11 +14,15 @@ func isEven(inNumber number: Int, _ multiple: Int = 2) -> Bool {
 /* ======================================================================================= */
 // Задание 1
 // Четное число или нет
+print("====== Задание 1 ======")
+
 print("Число 2 кратно 2? " + (isEven(inNumber: 2) ? "да" : "нет"))
 print("Число 15 кратно 2? " + (isEven(inNumber: 15) ? "да" : "нет"))
 
 /* ======================================================================================= */
 // Задание 2
+print("====== Задание 2 ======")
+
 print("Число 2 кратно 3? " + (isEven(inNumber: 2, 3) ? "да" : "нет"))
 print("Число 15 кратно 3? " + (isEven(inNumber: 15, 3) ? "да" : "нет"))
 
@@ -46,6 +50,8 @@ for (index, value) in testArray.enumerated().reversed() {
         testArray.remove(at: index)
     }
 }
+
+print("====== Задание 4 ======")
 print(testArray)
 
 /* ======================================================================================= */
@@ -87,37 +93,39 @@ func generateFiboNumber(incomingArray inArray: inout [Double]) -> () {
 }
 
 generateFiboNumber(incomingArray: &fiboNumbers)
+
+print("====== Задание 5 ======")
 print(fiboNumbers)
 
 /* ======================================================================================= */
 // Задание 6
 
 var intDict = [Int]()
-let p:Int = 2
-let n:Int = 100
+let p: Int = 2
+let n: Int = 100
 
-for i in 2...n{
+for i in 2...n {
     intDict.append(i)
 }
 
 func calculateItems(startIndex index: Int = 2, _ inDist: inout [Int]) -> () {
-    for (key, value) in inDist.enumerated().reversed(){
+    for (key, value) in inDist.enumerated().reversed() {
         if (key < index) {
             continue
         }
-        
-        if (value % index == 0)
-        {
+
+        if (value % index == 0) {
             inDist.remove(at: key)
         }
     }
-    
-    let nextIndex:Int = index+1
-    if (nextIndex < inDist.max()!){
+
+    let nextIndex: Int = index + 1
+    if (nextIndex < inDist.max()!) {
         calculateItems(startIndex: nextIndex, &inDist)
     }
 }
 
 calculateItems(&intDict)
+
+print("====== Задание 6======")
 print(intDict)
-//print(randomIntArray)
