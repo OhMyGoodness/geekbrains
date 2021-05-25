@@ -113,7 +113,7 @@ func calculateItems(startIndex index: Int = 2, _ inDist: inout [Int]) -> () {
 
     for (key, value) in inDist.enumerated().reversed() {
         if (key < index) {
-            continue
+            break
         }
 
         if (value % index == 0) {
