@@ -37,16 +37,15 @@ for i in 1...100 {
 
 /* ======================================================================================= */
 // задание 4
-//[1, 5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35, 37, 41, 43, 47, 49, 53, 55, 59, 61, 65, 67, 71, 73, 77, 79, 83, 85, 89, 91, 95, 97]
 
 /* Простой вариант
 testArray.removeAll{ value in
-    isEven(inNumber: value) || isEven(inNumber: value, 3)
+    isEven(inNumber: value) || !isEven(inNumber: value, 3)
 }
 */
 
 for (index, value) in testArray.enumerated().reversed() {
-    if (isEven(inNumber: value) || isEven(inNumber: value, 3)) {
+    if (isEven(inNumber: value) || !isEven(inNumber: value, 3)) {
         testArray.remove(at: index)
     }
 }
