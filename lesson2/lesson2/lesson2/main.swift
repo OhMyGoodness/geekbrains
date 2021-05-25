@@ -129,5 +129,5 @@ func calculateItems(startIndex index: Int = 2, _ inDist: inout [Int]) -> () {
 }
 
 calculateItems(&intDict)
-print("====== Задание 5 ======")
+print("====== Задание 6 ======")
 print(intDict)
