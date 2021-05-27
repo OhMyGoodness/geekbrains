@@ -8,4 +8,5 @@
 
 import Foundation
 
-print("Hello, World!")
+
+print("Урок номер 3")

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		55951F2498E0E036322FC2AB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55951CAF15F7DE6DB9E5B6FE /* main.swift */; };
+		55951E78B1D218E09A82FEBE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559511FD2AA8F674FD254D37 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5595103D2983B79BC44D4F51 /* lesson3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = lesson3; sourceTree = BUILT_PRODUCTS_DIR; };
-		55951CAF15F7DE6DB9E5B6FE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		559511FD2AA8F674FD254D37 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,25 +40,8 @@
 		559517C28F33D0CF590672A3 = {
 			isa = PBXGroup;
 			children = (
-				55951B8A04BCE5ADF7A405C7 /* Products */,
-				55951E8BC26230211CDEB959 /* lesson3 */,
+				559511FD2AA8F674FD254D37 /* main.swift */,
 			);
-			sourceTree = "<group>";
-		};
-		55951B8A04BCE5ADF7A405C7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5595103D2983B79BC44D4F51 /* lesson3 */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		55951E8BC26230211CDEB959 /* lesson3 */ = {
-			isa = PBXGroup;
-			children = (
-				55951CAF15F7DE6DB9E5B6FE /* main.swift */,
-			);
-			path = lesson3;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -79,7 +61,6 @@
 			);
 			name = lesson3;
 			productName = lesson3;
-			productReference = 5595103D2983B79BC44D4F51 /* lesson3 */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -95,7 +76,6 @@
 				en,
 			);
 			mainGroup = 559517C28F33D0CF590672A3;
-			productRefGroup = 55951B8A04BCE5ADF7A405C7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -109,7 +89,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55951F2498E0E036322FC2AB /* main.swift in Sources */,
+				55951E78B1D218E09A82FEBE /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
