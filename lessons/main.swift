@@ -6,87 +6,81 @@
 import Foundation
 
 enum MyThrows: Error {
-    case method_is_return_null
+    case division_by_zero
+    case unknown_car
 }
 
-protocol MyFilterProtocol{
-    func getYear() -> Int?
+enum CarTypes{
+    case bmw
+    case tesla
+    case lada
+    case ferrari
 }
 
-class Car: CustomStringConvertible, MyFilterProtocol{
-    var name: String = ""
-    var year: Int = 0
+var cars = [CarTypes.bmw: 200, CarTypes.tesla: 300, CarTypes.lada: 50]
 
-    var description: String {
-        return "Car name: \(name), Year production: \(year)"
-    }
-
-    init(_ name: String, _ year: Int) {
-        self.name = name
-        self.year = year
-    }
-
-    func getYear() -> Int? {
-        return self.year
-    }
-}
-
-class MyQueue<T>: MyFilterProtocol{
-    private var _items: [T] = []
-
-    init(){
-
-    }
-
-    func enQueue(_ item: T) -> (){
-        _items.append(item)
-    }
-
-    func deQueue() -> T{
-        let result = _items[0]
-        _items.remove(at: 0)
-
-        return result
-    }
-
-    func getSize() -> Int{
-        return _items.count
-    }
-
-    func getYear() -> Int? {
-        return nil
-    }
-
-    func getItemsByYear(_ year: Int) -> [T] {
-        _items.filter { item in
-            if item is MyFilterProtocol{
-                return (item as! MyFilterProtocol).getYear() == year
-            } else {
-                return false
-            }
+class MyMath {
+    static func divide(_ num: Int, _ divider: Int) throws -> Float? {
+        if (divider == 0) {
+            throw MyThrows.division_by_zero
         }
+
+        return Float(num) / Float(divider)
+    }
+
+    static func getCarSpeed(_ type: CarTypes) throws -> Int{
+        guard let carSpeed = cars[type] else{
+            throw MyThrows.unknown_car
+        }
+
+        return carSpeed
+    }
+
+    static func setNewCarSpeed(_ type: CarTypes, _ addSpeed: Int) throws -> Int {
+        let selectedCarSpeed: Int? = try getCarSpeed(type)
+
+        cars[type] = selectedCarSpeed! + addSpeed
+
+        return cars[type]!
     }
 }
 
-extension MyQueue{
-    subscript(index:Int) -> T? {
-        return index >= getSize() ? nil : _items[index]
-    }
-}
-var queue = MyQueue<Car>()
+do {
+    let result1: Float? = try MyMath.divide(100, 2)
 
-queue.enQueue(Car("BMW", 2019))
-queue.enQueue(Car("Ferrari", 2020)) // index 1
-queue.enQueue(Car("Mercedes", 2021))
-queue.enQueue(Car("Tesla", 2021))
+    print("Result 1 = \(result1!)")
 
-let cars2021yrs = queue.getItemsByYear(2021)
-for item in cars2021yrs{
-    print(item.description)
+    let result2: Float? = try MyMath.divide(100, 0)
+    print("Result 2 = \(result2!)")
+} catch MyThrows.division_by_zero {
+    print("Деление на ноль запрещено")
 }
 
-var testItem = queue[1]
-var testItem2 = queue[849]
-print("============= Test subscript =============")
-print(testItem)
-print(testItem2)
+var carSpeed: Int?
+do{
+    carSpeed = try MyMath.getCarSpeed(.tesla)
+}
+catch MyThrows.unknown_car{
+    print("Машина не найдена")
+}
+
+do{
+    // внутри блоков лучше так не делать, но в рамках ДЗ сделал ;(
+    let newCarSpeed = try MyMath.setNewCarSpeed(.tesla, 10)
+
+    print("Новая скорость машины равна = \(newCarSpeed)")
+}
+catch MyThrows.unknown_car{
+    print("Невозможно изменить скорость авто, Машина не найдена")
+}
+
+//////////////
+do{
+    // внутри блоков лучше так не делать, но в рамках ДЗ сделал ;(
+    let newCarSpeed = try MyMath.setNewCarSpeed(.ferrari, 10)
+
+    print("Новая скорость машины равна = \(newCarSpeed)")
+}
+catch MyThrows.unknown_car{
+    print("Невозможно изменить скорость авто, Машина не найдена")
+}
