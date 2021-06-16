@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		55951A659B92966D9AC47784 /* TeslaTrunkClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55951E76F8EEB5DED6897CCD /* TeslaTrunkClass.swift */; };
-		55951A85AA39F6AEB6552A06 /* FerarriClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559514F6FEAD796D8BE3B16C /* FerarriClass.swift */; };
 		55951E78B1D218E09A82FEBE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559511FD2AA8F674FD254D37 /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,8 +24,6 @@
 
 /* Begin PBXFileReference section */
 		559511FD2AA8F674FD254D37 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		559514F6FEAD796D8BE3B16C /* FerarriClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerarriClass.swift; sourceTree = "<group>"; };
-		55951E76F8EEB5DED6897CCD /* TeslaTrunkClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeslaTrunkClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,8 +41,6 @@
 			isa = PBXGroup;
 			children = (
 				559511FD2AA8F674FD254D37 /* main.swift */,
-				55951E76F8EEB5DED6897CCD /* TeslaTrunkClass.swift */,
-				559514F6FEAD796D8BE3B16C /* FerarriClass.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,8 +90,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				55951E78B1D218E09A82FEBE /* main.swift in Sources */,
-				55951A659B92966D9AC47784 /* TeslaTrunkClass.swift in Sources */,
-				55951A85AA39F6AEB6552A06 /* FerarriClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,120 +1,92 @@
 //
+// Лазин Данил Николаевич 09/06/2021
 //  main.swift
-//  lesson5
-//
-//  Created by Данила Лазин on 04.06.2021.
-//
-//1. Создать протокол «Car» и описать свойства, общие для автомобилей, а также метод действия.
-//2. Создать расширения для протокола «Car» и реализовать в них методы конкретных действий с автомобилем:
-//   открыть/закрыть окно, запустить/заглушить двигатель и т.д.
-//   (по одному методу на действие, реализовывать следует только те действия, реализация которых общая для всех автомобилей).
-//3. Создать два класса, имплементирующих протокол «Car» - trunkCar и sportСar. Описать в них свойства,
-//   отличающиеся для спортивного автомобиля и цистерны.
-//4. Для каждого класса написать расширение, имплементирующее протокол CustomStringConvertible.
-//5. Создать несколько объектов каждого класса. Применить к ним различные действия.
-//6. Вывести сами объекты в консоль.
-//
+//  lesson6
 
 import Foundation
 
-enum MyCustomCargoException: Error {
-    case cargo_not_initialized
+enum MyThrows: Error {
+    case method_is_return_null
 }
 
-protocol CarProtocol {
-    var YearProduction: Int { get set }
-    var Model: String { get set }
-    var GasVolume: Float { get set }
-
-    var IsWindowOpened: Bool { get set }
-    var IsEngineRunned: Bool { get set }
-
-    init(_ yearProd: Int, _ model: String, _ gasVolume: Float)
-
-    func getCurrentGasVolume() -> Float
+protocol MyFilterProtocol{
+    func getYear() -> Int?
 }
 
-extension CarProtocol {
-    mutating func onActionWindowOpen() -> () {
-        self.IsWindowOpened = true
-        print("Действие: открыть окна")
+class Car: CustomStringConvertible, MyFilterProtocol{
+    var name: String = ""
+    var year: Int = 0
+
+    var description: String {
+        return "Car name: \(name), Year production: \(year)"
     }
 
-    mutating func onActionWindowClose() -> () {
-        self.IsWindowOpened = false
-        print("Действие: закрыть окна")
+    init(_ name: String, _ year: Int) {
+        self.name = name
+        self.year = year
     }
 
-    mutating func onEngineRun() -> () {
-        IsEngineRunned = true
-        print("Действие: запустить двигатель")
-    }
-
-    mutating func onEngineStop() -> () {
-        IsEngineRunned = true
-        print("Действие: остановить двигатель")
+    func getYear() -> Int? {
+        return self.year
     }
 }
 
-// простите, у меня травма)) перечисления привык в верхнем регистре делать((
-enum CargoType {
-    case BODY
-    case TRUNK
-    case GAS
-}
+class MyQueue<T>: MyFilterProtocol{
+    private var _items: [T] = []
 
-struct CargoProperties {
-    var CargoMaxVolume: Float = 0.0
-    var CargoCurrentVolume: Float = 0
-    var CargoType: CargoType
+    init(){
 
-    init(_ maxVol: Float, _ type: CargoType) {
-        CargoMaxVolume = maxVol
-        CargoType = type
-        CargoCurrentVolume = 0
+    }
+
+    func enQueue(_ item: T) -> (){
+        _items.append(item)
+    }
+
+    func deQueue() -> T{
+        let result = _items[0]
+        _items.remove(at: 0)
+
+        return result
+    }
+
+    func getSize() -> Int{
+        return _items.count
+    }
+
+    func getYear() -> Int? {
+        return nil
+    }
+
+    func getItemsByYear(_ year: Int) -> [T] {
+        _items.filter { item in
+            if item is MyFilterProtocol{
+                return (item as! MyFilterProtocol).getYear() == year
+            } else {
+                return false
+            }
+        }
     }
 }
 
-protocol CarCargoProtocol {
-    var CargoProps: CargoProperties? { get set }
+extension MyQueue{
+    subscript(index:Int) -> T? {
+        return index >= getSize() ? nil : _items[index]
+    }
+}
+var queue = MyQueue<Car>()
 
-    var CargoMaxVolume: Float { get set }
+queue.enQueue(Car("BMW", 2019))
+queue.enQueue(Car("Ferrari", 2020)) // index 1
+queue.enQueue(Car("Mercedes", 2021))
+queue.enQueue(Car("Tesla", 2021))
 
-    var CargoInitialized: Bool { get set }
-
-    func InitializeCargo(_ maxVol: Float, _ type: CargoType)
-
-    mutating func UploadToCargo(_ volume: Float) -> ()
-
-    mutating func UnloadFromCargo(_ volume: Float) -> ()
+let cars2021yrs = queue.getItemsByYear(2021)
+for item in cars2021yrs{
+    print(item.description)
 }
 
-var teslaCar = TeslaTrunkClass.init(2021, "X6", 500.5)
-teslaCar.UploadToCargo(10)
-teslaCar.InitializeCargo(1000, .TRUNK)
-teslaCar.UploadToCargo(100)
-teslaCar.onActionWindowOpen()
-
-if (teslaCar is CarNitroExtension)
-{
-    (teslaCar as! CarNitroExtension).onNitro()
-}
-
-print(teslaCar)
-
-var ferrariClass = FerrariClass.init(2022, "911", 50)
-ferrariClass.UploadToCargo(20)
-ferrariClass.InitializeCargo(30, .BODY)
-ferrariClass.UploadToCargo(10)
-
-if (ferrariClass is CarNitroExtension)
-{
-    (ferrariClass as CarNitroExtension).onNitro()
-}
-
-ferrariClass.onEngineRun()
-
-if (ferrariClass is CarNitroExtension)
-{
-    (ferrariClass as CarNitroExtension).onNitro()
-}
+var testItem = queue[1]
+var testItem2 = queue[849]
+print("============= Test subscript =============")
+print(testItem)
+print(testItem2)
